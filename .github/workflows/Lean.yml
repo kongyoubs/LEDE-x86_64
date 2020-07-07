@@ -6,23 +6,21 @@
 
 name: Lean_x86_64
 
-on: 
-  release:
-    types: [published]
-
-  push:
-    branches: 
-      - master
-
-  schedule:
-    - cron: 0 8 * * 5
-  
+on:
   watch:
-    types: [started]
+    types: started
+    
+ # push:
+ #   branches: 
+ #     - master
 
+ # schedule:
+ #   - cron: 0 8 * * 5
+  
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
 
     steps:
     - name: 检查
@@ -81,7 +79,6 @@ jobs:
       run: |
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         chmod +x ./customize.sh && ./customize.sh
-        chmod +x ./diy-part1.sh && ./diy-part1.sh
         cd openwrt
         sudo -E chmod 755 package/litte/luci-app-adguardhome/root/etc/init.d/AdGuardHome
         rm -rf package/litte/microsocks && rm -rf package/litte/redsocks2 && rm -rf package/litte/tcpping
