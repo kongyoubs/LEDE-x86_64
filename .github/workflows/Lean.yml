@@ -4,18 +4,21 @@
 # Author: kenzo
 #=================================================
 
-name: Lean_x86_64
+name: Build OpenWrt
 
 on:
-  watch:
-    types: started
-    
+  repository_dispatch:
+  release:
+    types: published
   push:
-    branches: 
+    branches:
       - master
-
- # schedule:
- #   - cron: 0 8 * * 5
+    paths:
+      - 'buddha.config'
+#  schedule:
+#    - cron: 0 8 * * 5
+#  watch:
+#    types: started
   
 jobs:
   build:
