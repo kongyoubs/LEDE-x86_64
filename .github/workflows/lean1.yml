@@ -3,7 +3,7 @@
 # Lisence: MIT
 # Author: kenzo
 #=================================================
-name: Lean_5.4.*
+name: Lean_x86_64
 
 on: 
    watch:
@@ -91,6 +91,6 @@ jobs:
     - name : 上传固件与目录
       uses: actions/upload-artifact@master
       with:
-        name: Lean_5.4
+        name: Lean_x86_64
         path: openwrt/bin
  
